@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using apkbackend.Data;
 using apkbackend.Pages.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace apkbackend.Pages.Projects
 {
@@ -20,13 +22,22 @@ namespace apkbackend.Pages.Projects
         }
 
         public IList<Project> Project { get;set; } = default!;
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+        public SelectList? Genres { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? MovieGenre { get; set; }
 
         public async Task OnGetAsync()
         {
-            if (_context.Project != null)
+            var movies = from m in _context.Project
+                         select m;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Project = await _context.Project.ToListAsync();
+                movies = movies.Where(s => s.Nazwa.Contains(SearchString));
             }
+
+            Project = await movies.ToListAsync();
         }
     }
 }

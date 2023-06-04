@@ -19,23 +19,20 @@ namespace apkbackend.Pages.Projects
             _context = context;
         }
 
-      public Project Project { get; set; } = default!; 
+      public Project Project { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Project == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Project.FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
+            Project = await _context.Project.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Project == null)
             {
                 return NotFound();
-            }
-            else 
-            {
-                Project = project;
             }
             return Page();
         }

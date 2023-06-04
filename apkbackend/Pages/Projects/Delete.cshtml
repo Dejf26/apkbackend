@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model apkbackend.Pages.Projects.DeleteModel
 
 @{
@@ -29,6 +29,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Project.status)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Opiekun)
+    </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Opiekun)
         </dd>
     </dl>
     

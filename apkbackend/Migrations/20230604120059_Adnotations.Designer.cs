@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using apkbackend.Data;
 
@@ -10,9 +11,11 @@ using apkbackend.Data;
 namespace apkbackend.Migrations
 {
     [DbContext(typeof(apkbackendContext))]
-    partial class apkbackendContextModelSnapshot : ModelSnapshot
+    [Migration("20230604120059_Adnotations")]
+    partial class Adnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
